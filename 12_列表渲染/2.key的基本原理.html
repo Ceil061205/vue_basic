@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>person</h2>
+    <button @click.once="add">+</button>
+    <ul>
+      <!-- key唯一标识效率高复用 如果用index打乱顺序会错乱，效率也低 -->
+      <li v-for="p of persons" :key="p.id">{{p.name}}-{{p.age}}
+        <input type="text" >
+      </li>
+    </ul>
+
+
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        persons:[{
+          id:'001',
+          name:'zs',
+          age:18
+        }, {
+            id: '002',
+            name: 'ls',
+            age: 19
+          }, {
+            id: '003',
+            name: 'ww',
+            age: 20
+          }],
+      },
+      methods: {
+        add(){
+          const p = {
+            id:'004',
+            name:"ll",
+            age:90
+          }
+          this.persons.unshift(p)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

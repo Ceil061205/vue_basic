@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 开发版本的vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <!-- 
+    1.prevent 阻止默认事件
+    2.stop 阻止事件冒泡
+    3.once 事件只触发一次
+    4.capture 使用事件的捕获模式 捕获阶段就触发（一般是冒泡阶段触发）
+    5.self 只有event.target是当前操作的元素才会出发事件
+    6.passive 事件的默认行为立即执行，无需等待事件回调执行完毕
+  -->
+    <style>
+      .demo1{
+        height: 50px;
+        background-color: skyblue;
+      }
+      .list{
+        width: 200px;
+        height: 200px;
+        background-color: #d16262;
+        overflow: auto;
+      }
+      li{
+        height: 100px;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="root">
+    <a href="http://www.baidu.com" @click.prevent="showInfo"></a>
+    <div class="demo1" @click="showInfo">
+      <!-- 修饰符可以连续写 -->
+       <!-- keyup.ctrl.y 两个一起才有效-->
+      <button @click.stop="showInfo">ts</button>
+    </div>
+  <!-- scroll滚动条 wheel滚轮 passive 事件的默认行为立即执行，无需等待事件回调执行完毕 -->
+   <!-- 不用在等待for循环执行完 -->
+    <ul @wheel.passive="demo" class="list">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; //防止vue在启动时生成生产提示
+    const x = new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz'
+      },
+      methods: {
+        showInfo(e) {
+          // e.preventDefault();
+          alert("你好")
+        },
+        demo(){
+          for(let i=0;i<10000;i++)
+          {
+            console.log('#'); 
+          }
+          console.log('@');
+          
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

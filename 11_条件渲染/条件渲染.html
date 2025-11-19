@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>{{n}}</h2>
+    <button @click="n++">n+1</button>
+    <!-- 频繁切换时候v-show -->
+    <!-- <div v-show="true">{{name}}</div>
+    <div v-if="false">{{name}}</div> -->
+    <!-- <div v-show="n === 1">a</div>
+    <div v-show="n === 2">b</div>
+    <div v-show="n === 3">3</div> -->
+
+    <!-- 一组 内部不能被打乱 -->
+      <div v-if="n === 1">a</div>
+      <div v-else-if="n === 2">b</div>
+      <!-- <div>1</div> -->
+      <div v-else-if="n === 3">c</div>
+      <div v-else>d</div>
+
+      <!-- template与v-if使用不破坏结构 -->
+      <!-- vif元素可能无法获取到 show一定会获取到 -->
+     <template v-if="n === 1">
+      <h2>a</h2>
+      <h2>b</h2>
+      <h2>3</h2>
+     </template>
+
+
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz',
+        n:0
+        
+      },
+    })
+  </script>
+</body>
+
+</html>

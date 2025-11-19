@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script text="text/javascript">
+    let num = 18
+    let person = {
+      name:'xyz',
+      sex:'male',
+      age:num
+    }
+    // 该属性不参与枚举遍历
+    Object.defineProperty(person,'age',{
+      // value:18,
+      // // 控制属性是否可以枚举 默认是false
+      // enumerable:true,
+      // // 控制是否可以被修改
+      // writable:true,
+      // // 控制是否可以被删除
+      // configurable:true
+
+      // 当读取person的age属性时，get函数(getter)就会被调用且返回值是age的值
+      get(){
+        // 此时num变了person.num也会变，不用代理则不会变
+        return num
+      },
+      // 当修改时被调用，且会收到修改的具体值
+      set(value){
+        console.log('修改age后为',value);
+        num = value
+      }
+
+
+    })
+    // 将key遍历出来成一个数组
+    // console.log(Object.keys(person))
+    // for(let key in person){
+    //   console.log(person[key]);
+      
+    // }
+    console.log(person);
+    
+  </script>
+</body>
+</html>

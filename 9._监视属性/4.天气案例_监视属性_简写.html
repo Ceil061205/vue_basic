@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2>今天天气{{info}}</h2>
+    <button @click="change">切换天气</button>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        isHot:true,
+      },
+      computed: {
+        info(){
+          return this.isHot ? '炎热' : '凉爽'
+        }
+      },
+      methods: {
+        change(){
+          this.isHot = !this.isHot
+        }
+      },
+      
+       watch: {
+        // 正常写法
+        // 'isHot': {
+        //   immediate: true,
+        //   handler(newValue, old) {
+        //     console.log(newValue, old);
+        //   }
+        // },
+        // 简写只有handler
+        // isHot(newValue, old) {
+        //   console.log(newValue,old);
+        // }
+
+      }
+    })
+    // 正常写法
+    // vm.$watch("isHot",{
+    //     immediate: true,
+    //     handler(newValue, old) {
+    //       console.log(newValue, old);
+    //     }
+     
+    // })
+    // 简写
+     vm.$watch("isHot", function(newValue, old){
+      console.log(newValue, old);
+     })
+  </script>
+</body>
+
+</html>

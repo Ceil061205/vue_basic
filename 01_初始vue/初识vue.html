@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 开发版本的vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 准备一个容器 -->
+   <!-- 可以写多个容器 一个vue实例不能接管更多的容器  都是一对一的关系 -->
+  <div id="root">
+    <!-- js 表达式一个表达式生成一个值  js代码（语句控制js代码） -->
+    <!-- {{里面写js表达式}} -->
+    <h1>hello,{{name}}</h1>
+  </div>
+  <script type="text/javascript" >
+    Vue.config.productionTip = false; //防止vue在启动时生成生产提示
+    const x = new Vue({
+      el:'#root',
+      data:{
+        name:'xyz'
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 通过已有的属性计算的来 底层是Object. -->
+<body>
+  <div id="root">
+    姓<input type="text" v-model="first">
+    <br>
+    名<input type="text" v-model="last">
+    <br>
+    <!-- 计算属性最终出现在vm上直接读取即可 -->
+    姓名<span>{{full}}</span>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        first: 'zhang',
+        last: 'san'
+      },
+      // 有缓存
+      // get调用时机 初始读 所依赖的数据发生变化时
+      computed:{
+        full:{
+          get(){
+            console.log('调用');
+            return this.first + '-' + this.last      
+          },
+          // 当full被修改时调用
+          set(value){
+            console.log('set',value);
+            const arr = value.split('-');
+            this.first = arr[0]
+            this.last = arr[1]
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

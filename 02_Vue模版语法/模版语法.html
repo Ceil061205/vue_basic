@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 开发版本的vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+    <h1>插值语法 在标签体内用</h1>
+    <h3>{{name}}</h3>
+    <hr>
+    <h1>指令语法 解析标签里面写js表达式</h1>
+    <!-- 有了v-bind：把里面当表达式解析 简写为: -->
+    <a v-bind:href="url" :x="hello">111</a>
+  </div>
+  <script type="text/javascript">
+    const x = new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz',
+        url:'http://www.baidu.com',
+        hello:'你好'
+      }
+    });
+  </script>
+</body>
+
+</html>

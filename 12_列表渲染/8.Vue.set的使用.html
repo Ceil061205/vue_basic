@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- undefined 不会显示 直接访问一个普通数据a会报错 a.b不会 -->
+<body>
+  <div id="root">
+    <h2>name:{{name}}</h2>
+    <h2>{{student.age.rA}}</h2>
+    <h2 v-if="student.sex">{{student.sex}}</h2>
+    <button @click="add">性别</button>
+    <ul>
+      <li v-for="(f,index) in student.friends" :key="index">
+        {{f.name}}
+      </li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+// Vue.set vm.$set 只能给一个对象数组里面追加属性,不能直接给data里面加
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        name:'xyz',
+        student:{
+          name:'tom',
+          age:{
+            rA:40
+          },
+          friends:[{
+            name:'jerry'
+          }]
+        }
+      },
+      methods: {
+        add(){
+          // Vue.set(this.student,'sex','nan')
+          this.$set(this.student, 'sex', 'nan')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

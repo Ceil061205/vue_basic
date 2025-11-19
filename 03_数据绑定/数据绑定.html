@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 开发版本的vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- :数据只能从data流向页面 -->
+    单向数据绑定<input type="text" :value="name">
+    <hr>
+    <!-- 还可以从页面流向data -->
+    双向数据绑定<input type="text" v-model:value="name">
+    <!-- 以下为错误使用，v-model只能用在表单类元素上 -->
+    <h2 v-model="name">222</h2>
+  </div>
+  <script type="text/javascript">
+    const x = new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz',
+        url: 'http://www.baidu.com',
+        hello: '你好'
+      }
+    });
+  </script>
+</body>
+
+</html>

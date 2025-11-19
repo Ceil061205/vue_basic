@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <!-- 被vue管理的函数最好写成普通函数，this才会指向vm或组件实例，不是则写成箭头函数（都是为了指向vm） -->
+</head>
+<body>
+  <div id="root">
+    姓<input type="text" v-model="first">
+    <br>
+    名<input type="text" v-model="last">
+    <br>
+    姓名<span>{{full}}</span>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        first: 'zhang',
+        last: 'san',
+        full:'zhang-san'
+      },
+      // 可以开启异步任务
+      watch:{
+        first(newValue,old){
+        setTimeout(()=>{
+            this.full = newValue + '-' + this.last
+        },1000)
+        },
+        last(newValue, old) {
+          this.full = this.first + '-' + newValue 
+      }
+    }
+    })
+  </script>
+</body>
+
+</html>

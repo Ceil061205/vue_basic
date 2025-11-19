@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 开发版本的vue -->
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1>hello,{{name}}</h1>
+    <!-- tab要配合keydown使用 -->
+    <!-- delete esc space tab up down left down -->
+     <!-- ctrl alt shift meta  配合keydown正常使用 -->
+    <input type="text" placeholder="按下回车提水输入" @keyup.enter="showInfo">
+  </div>
+  <script type="text/javascript">
+    Vue.config.productionTip = false; 
+    // 定义别名
+    Vue.config.keyCodes.huiche = 13;
+    const x = new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz'
+      },
+      methods: {
+        showInfo(e){
+        //   if(e.keyCode !== 13)
+        //   return;
+          console.log(e.key);
+          
+          console.log(e.target.value);
+          
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>

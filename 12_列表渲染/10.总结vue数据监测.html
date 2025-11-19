@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <button @click="student.age++">age+1</button>
+    <button @click="age++">age+1</button>
+    <button @click="age++">age+1</button>
+    <button @click="age++">age+1</button>
+    <button @click="age++">age+1</button>
+    <h1>{{student.name}}</h1>
+    <h1>{{student.age}}</h1>
+    <ul>
+      <li v-for="(h,index) in student.hobby" :key="index">{{h}}</li>
+    </ul>
+    <ul>
+      <li v-for="(f,index) in student.friends" :key="index">{{f.name}}-{{f.age}}</li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        student: {
+          name: 'tom',
+          age: 30,
+          hobby: ['1', '2'],
+          friends: [{name: 'jerry',age:19},{name:"jjj",age:7}]
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

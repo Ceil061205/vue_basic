@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <style>
+    /* 解决网速慢显示{{}}的问题 */
+    [v-clock]{
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <!--  -->
+    <div v-clock>{{name}}</div>
+    <div v-html="str"></div>
+
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz',
+        str: '<h3>222</h3>'
+      }
+    })
+  </script>
+</body>
+
+</html>

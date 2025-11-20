@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 生命周期函数中this指向vm或者组件爱你实例对象 -->
+<body>
+  <div id="root">
+    <h2 :style="{opacity}">11</h2>
+    <!-- {{change()}} -->
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      // 改数据则重新解析模版
+      data: {
+        opacity:1
+      },
+      // 不可取
+      // methods: {
+      //   change(){
+      //     setInterval(()=>{
+      //       this.opacity -= 0.01
+      //       if(this.opacity <= 0.01) this.opacity = 1
+      //     },16)
+      //   }
+      // },
+      //mounted： vue完成模版的解析并把初识的真实dom放入页面后 挂在完毕
+      mounted() {
+        setInterval(() => {
+              this.opacity -= 0.01
+              if(this.opacity <= 0.01) this.opacity = 1
+            },16)
+          }
+    })
+    // 外部不推荐
+    // setInterval(()=>{
+    //   vm.opacity -= 0.01
+    //   if(vm.opacity <= 0.01) vm.opacity = 1
+    // },16)
+  </script>
+</body>
+
+</html>

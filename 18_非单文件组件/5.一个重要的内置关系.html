@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <school></school>
+  </div>
+  <!-- VueComponent.prototype.__proto__ === Vue.prototype 所以vc都可以访问到Vue原型上的属性、方法-->
+  <script type="text/javascript">
+    Vue.prototype.x=0
+    const school = Vue.extend({
+      template: `
+      <div>
+        <h2>{{name}}</h2>
+        <button @click='out'>shuchu</button>
+      </div>
+      `,
+      data() {
+        return { name: 'xzy' }
+      },
+      methods: {
+        out(){
+          console.log(this.x);
+        }
+        
+      },
+    })
+    new Vue({
+      el: '#root',
+      components: {
+        school
+      }
+    })
+    // function demo(){
+    //   this.a = 1
+    //   this.b = 2
+    // }
+    // const d = new demo()
+    // console.log(demo.prototype);//显式原型属性
+    // console.log(d.__proto__);//隐式原型属性
+    // // 自己用显示加
+    // demo.prototype.x = 99
+    // console.log(d);
+    
+  </script>
+</body>
+
+</html>

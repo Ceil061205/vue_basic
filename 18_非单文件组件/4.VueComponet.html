@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 组件是可复用的vue实例 -->
+<!-- 组件中的this军指向VueComponet组件实例对象 -->
+<body>
+  <div id="root">
+    <!-- vue解析时会创建一个school组件的实例对象 -->
+    <school></school>
+  </div>
+  <script type="text/javascript">
+    // school组件本质是一个名为vuecomponet的构造函数
+    // 每次调用extend返回的都是一个全新的vue实例对象
+    const school = Vue.extend({
+      template: `
+      <div>
+        <h2>{{name}}</h2>
+      </div>
+      `,
+      data() {
+        return { name: 'xzy' }
+      }
+    })
+    new Vue({
+      el: '#root',
+      components: {
+        school
+      }
+    })
+  </script>
+</body>
+
+</html>

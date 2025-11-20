@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <!--  mounted页面经过vue编译的dom（尽可能在此避免操作dom） 开启定时器，发送网络请求，绑定自定义事件的等初始化操作
+        beforeDestroy关闭定时器解绑自定义事件等收尾操作
+      -->
+</head>
+<body>
+  <div id="root">
+    <h2 :style="{opacity}">11</h2>
+    <button @click="opacity = 1">透明度1</button>
+    <button @click="stop">点我停止</button>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        opacity:1
+      },
+      methods: {
+        stop(){  
+          this.$destroy()
+        }
+      },
+      mounted() {
+        this.timer = setInterval(() => {
+              this.opacity -= 0.01
+              if(this.opacity <= 0.01) this.opacity = 1
+            },16)
+          },
+          beforeDestroy() {
+            clearInterval(this.timer)
+          },
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 提走过该节点的编译直接拿来用（优化性能，效率高） -->
+    <h2 v-pre>ddd</h2>
+    <h2>{{n}}</h2>
+    <button @click="n++">n+1</button>
+  </div>
+  <script type="text/javascript">
+    new Vue({
+      el: '#root',
+      data: {
+        name: 'xyz',
+        n:1
+      }
+    })
+  </script>
+</body>
+
+</html>

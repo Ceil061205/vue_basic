@@ -6,16 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script type="text/javascript" src="../js/vue.js"></script>
+  <!-- 
+    VUE会监测所有层的数据
+    set不能直接给date添加
+
+
+    
+  -->
 </head>
 <body>
   <div id="root">
     <button @click="student.age++">age+1</button>
-    <button @click="age++">age+1</button>
-    <button @click="age++">age+1</button>
-    <button @click="age++">age+1</button>
-    <button @click="age++">age+1</button>
+    <button @click="addSex">添加默认属性男</button>
+    <button @click="student.sex = 'n'">修改性别</button>
+    <button @click="addFriend">+f</button>
+    <button @click="updateFirst">updateFirst</button>
+    <button @click="addHobby">addHobby</button>
+    <button @click="update">update</button>
+    <button @click="remove">remove</button>
     <h1>{{student.name}}</h1>
     <h1>{{student.age}}</h1>
+    <h3 v-if="student.sex">{{student.sex}}</h3>
     <ul>
       <li v-for="(h,index) in student.hobby" :key="index">{{h}}</li>
     </ul>
@@ -30,10 +41,35 @@
         student: {
           name: 'tom',
           age: 30,
+          // 直接拿到索引去更改才无效
           hobby: ['1', '2'],
           friends: [{name: 'jerry',age:19},{name:"jjj",age:7}]
         }
-      }
+      },
+      methods: {
+        addSex(){
+          Vue.set(this.student,'sex','男')
+        },
+        addFriend(){
+          this.student.friends.unshift({name:"hhh",age:8})
+        },
+        updateFirst(){
+          this.student.friends[0].name = 'zs'
+        },
+        addHobby(){
+          this.student.hobby.push('xx')
+        },
+        update(){
+          // this.student.hobby.splice(0,1,'update')
+          this.$set(this.student.hobby,0,'update')
+        },
+        remove(){
+          // 使用非替换方法时使用新替换原数组concat slice filter
+          this.student.hobby = this.student.hobby.filter((h)=>{
+            return h !== '1'
+          })
+        }
+      },
     })
   </script>
 </body>

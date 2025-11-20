@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .in{
+      background-color: #c22222;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn">shu</button>
+  <script type="text/javascript">
+    const btn = document.getElementById('btn')
+    btn.onclick = ()=>{
+      const input = document.createElement('input')
+      input.className = 'in'
+      input.value = 99
+      input.onclick = ()=>{alert('1')}
+      document.body.appendChild(input)
+      input.focus()
+      input.parentElement.style.backgroundColor = 'skyblue'
+    }
+  </script>
+</body>
+</html>

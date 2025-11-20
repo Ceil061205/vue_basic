@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- 自动首字母大写 -->
+     <!-- 可大写School 以下需要脚手架才能解析：MySchool -->
+    <school></school>
+    <!-- <school/>   需要在脚手架环境下 -->
+  </div>
+  <script type="text/javascript">
+    // 可以省Vue.extend
+    const school = Vue.extend({
+      name:'sc',//这里可以直接定义组件名在开发者工具中体现
+      template:`
+      <div>
+        <h2>{{name}}</h2>
+      </div>
+      `,
+      data(){
+        return {name:'xzy'}
+      }
+    })
+    new Vue({
+      el: '#root',
+      components:{
+        school
+      }
+    })
+  </script>
+</body>
+
+</html>

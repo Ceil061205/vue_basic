@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h2 v-text="n"></h2>
+    <h2>{{n}}</h2>
+    <button @click="add">++</button>
+    <button @click="bye">xiaohui</button>
+  </div>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#root',
+      // 只能有一个根元素 整个替换root
+    //   template:`<div><h2>{{n}}</h2>
+    // <button @click="add">++</button></div>`,
+      data: {
+        n:1
+      },
+      methods: {
+        add(){
+          this.n++
+        },
+        bye(){
+          console.log('DE')
+          // 清理与其他实例的链接，解绑自定义事件监听器和全部指令
+          this.$destroy()//自杀，大多情况不用
+        }
+      },
+      // 无法访问methods中的方法 data里面的数据
+      beforeCreate() {
+        console.log('beforeCreate');
+        // console.log(this); vm
+      },
+      // <!-- 数据代理，数据监测的创建之前创建完 -->
+      // 可以访问data methods
+      created() {
+        console.log('created');
+        // console.log(this); 
+      },
+      // 页面呈现未经编译的dom,此时对dom的操作最终都不奏效
+      beforeMount() {
+        console.log('beforeMount');
+        // console.log(this); 
+        // debugger
+      },
+      //页面经过vue编译的dom（尽可能在此避免操作dom） 开启定时器，发送网络请求，绑定自定义事件的等初始化操作
+      mounted() {
+        console.log('mounted');
+        console.log(this); 
+        // debugger
+      },
+      // 页面（旧）和数据（新）尚未保持同步
+      beforeUpdate() {
+        console.log('beforeUpdate');
+        console.log(this.n);
+        // debugger
+      },
+      // 页面数据保持同步
+      updated() {
+        console.log('updated');
+        // debugger
+      },
+      // 关闭定时器解绑自定义事件等收尾操作
+      beforeDestroy() {
+        console.log('beforeDestroy');
+        
+      },
+      destroyed() {
+        console.log('destroy');
+        
+      },
+
+    })
+  </script>
+</body>
+
+</html>
